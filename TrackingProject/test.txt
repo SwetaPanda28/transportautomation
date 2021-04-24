@@ -1,0 +1,640 @@
+[TCP] mysqld.exe
+	PID:	13896
+	State:	ESTABLISHED
+	Local:	WINSERVER:3306
+	Remote:	localhost:49595
+[TCP] mysqld.exe
+	PID:	13896
+	State:	ESTABLISHED
+	Local:	WINSERVER:3306
+	Remote:	localhost:49907
+[TCP] mysqld.exe
+	PID:	13896
+	State:	ESTABLISHED
+	Local:	WINSERVER:3306
+	Remote:	localhost:63380
+[TCP] mysqld.exe
+	PID:	13896
+	State:	ESTABLISHED
+	Local:	WINSERVER:3306
+	Remote:	localhost:63381
+[TCP] mysqld.exe
+	PID:	13896
+	State:	ESTABLISHED
+	Local:	WINSERVER:3306
+	Remote:	localhost:64173
+[TCP] mysqld.exe
+	PID:	13896
+	State:	ESTABLISHED
+	Local:	WINSERVER:3306
+	Remote:	localhost:49932
+[TCP] svchost.exe
+	PID:	9740
+	State:	ESTABLISHED
+	Local:	winserver:ms-wbt-server
+	Remote:	ro-vchauhan-w10:58511
+[TCP] XWin_MobaX.exe
+	PID:	16744
+	State:	ESTABLISHED
+	Local:	WINSERVER:6000
+	Remote:	localhost:56718
+[TCP] XWin_MobaX.exe
+	PID:	16744
+	State:	ESTABLISHED
+	Local:	WINSERVER:6000
+	Remote:	localhost:56720
+[TCP] XWin_MobaX.exe
+	PID:	16744
+	State:	ESTABLISHED
+	Local:	WINSERVER:6000
+	Remote:	localhost:56719
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:9876
+	Remote:	localhost:50360
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:9876
+	Remote:	localhost:50383
+[TCP] fileserver.exe
+	PID:	2916
+	State:	ESTABLISHED
+	Local:	WINSERVER:24001
+	Remote:	localhost:49235
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50216
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50221
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50234
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50283
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50284
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50237
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50217
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50222
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50235
+[TCP] mongod.exe
+	PID:	1240580
+	State:	ESTABLISHED
+	Local:	WINSERVER:27017
+	Remote:	localhost:50241
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:31000
+	Remote:	localhost:32000
+[TCP] wrapper.exe
+	PID:	7420
+	State:	ESTABLISHED
+	Local:	WINSERVER:32000
+	Remote:	localhost:31000
+[TCP] pxesrv.exe
+	PID:	8116
+	State:	ESTABLISHED
+	Local:	WINSERVER:49235
+	Remote:	localhost:24001
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49271
+	Remote:	localhost:49272
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49272
+	Remote:	localhost:49271
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49273
+	Remote:	localhost:49274
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49274
+	Remote:	localhost:49273
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49275
+	Remote:	localhost:49276
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49276
+	Remote:	localhost:49275
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49277
+	Remote:	localhost:49278
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49278
+	Remote:	localhost:49277
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49279
+	Remote:	localhost:49280
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49280
+	Remote:	localhost:49279
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49281
+	Remote:	localhost:49282
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49282
+	Remote:	localhost:49281
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49283
+	Remote:	localhost:49284
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49284
+	Remote:	localhost:49283
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49285
+	Remote:	localhost:49286
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49286
+	Remote:	localhost:49285
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49287
+	Remote:	localhost:49288
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49288
+	Remote:	localhost:49287
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49304
+	Remote:	localhost:49305
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49305
+	Remote:	localhost:49304
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49306
+	Remote:	localhost:49307
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49307
+	Remote:	localhost:49306
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49308
+	Remote:	localhost:49309
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49309
+	Remote:	localhost:49308
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49310
+	Remote:	localhost:49311
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49311
+	Remote:	localhost:49310
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49312
+	Remote:	localhost:49313
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49313
+	Remote:	localhost:49312
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49314
+	Remote:	localhost:49315
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49315
+	Remote:	localhost:49314
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49316
+	Remote:	localhost:49317
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49317
+	Remote:	localhost:49316
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49318
+	Remote:	localhost:49319
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49319
+	Remote:	localhost:49318
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49322
+	Remote:	localhost:49323
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49323
+	Remote:	localhost:49322
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49324
+	Remote:	localhost:49325
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49325
+	Remote:	localhost:49324
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49326
+	Remote:	localhost:49327
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49327
+	Remote:	localhost:49326
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49328
+	Remote:	localhost:49329
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49329
+	Remote:	localhost:49328
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49330
+	Remote:	localhost:49331
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49331
+	Remote:	localhost:49330
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49332
+	Remote:	localhost:49333
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49333
+	Remote:	localhost:49332
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49334
+	Remote:	localhost:49335
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49335
+	Remote:	localhost:49334
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49336
+	Remote:	localhost:49337
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49337
+	Remote:	localhost:49336
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49338
+	Remote:	localhost:49339
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49339
+	Remote:	localhost:49338
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49371
+	Remote:	localhost:49372
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49372
+	Remote:	localhost:49371
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49373
+	Remote:	localhost:49374
+[TCP] java.exe
+	PID:	9212
+	State:	ESTABLISHED
+	Local:	WINSERVER:49374
+	Remote:	localhost:49373
+[TCP] Navicat 11.1.12 Portable.exe
+	PID:	141504
+	State:	ESTABLISHED
+	Local:	WINSERVER:49595
+	Remote:	localhost:3306
+[TCP] chrome.exe
+	PID:	1229336
+	State:	ESTABLISHED
+	Local:	WINSERVER:49790
+	Remote:	localhost:49793
+[TCP] chrome.exe
+	PID:	1229336
+	State:	ESTABLISHED
+	Local:	WINSERVER:49790
+	Remote:	localhost:49796
+[TCP] chrome.exe
+	PID:	1229336
+	State:	ESTABLISHED
+	Local:	WINSERVER:49790
+	Remote:	localhost:49795
+[TCP] chromedriver.exe
+	PID:	1229252
+	State:	ESTABLISHED
+	Local:	WINSERVER:49793
+	Remote:	localhost:49790
+[TCP] chromedriver.exe
+	PID:	1229252
+	State:	ESTABLISHED
+	Local:	WINSERVER:49795
+	Remote:	localhost:49790
+[TCP] chromedriver.exe
+	PID:	1229252
+	State:	ESTABLISHED
+	Local:	WINSERVER:49796
+	Remote:	localhost:49790
+[TCP] Navicat 11.1.12 Portable.exe
+	PID:	141504
+	State:	ESTABLISHED
+	Local:	WINSERVER:49907
+	Remote:	localhost:3306
+[TCP] Navicat 11.1.12 Portable.exe
+	PID:	141504
+	State:	ESTABLISHED
+	Local:	WINSERVER:49932
+	Remote:	localhost:3306
+[TCP] avgidsagenta.exe
+	PID:	3668
+	State:	CLOSE_WAIT
+	Local:	winserver:50205
+	Remote:	idp-proxy02.sea.ff.avast.com:http
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50216
+	Remote:	localhost:27017
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50217
+	Remote:	localhost:27017
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50221
+	Remote:	localhost:27017
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50222
+	Remote:	localhost:27017
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50234
+	Remote:	localhost:27017
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50235
+	Remote:	localhost:27017
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50237
+	Remote:	localhost:27017
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50241
+	Remote:	localhost:27017
+[TCP] chrome.exe
+	PID:	23988
+	State:	ESTABLISHED
+	Local:	winserver:50258
+	Remote:	151.101.129.69:https
+[TCP] chrome.exe
+	PID:	23988
+	State:	ESTABLISHED
+	Local:	winserver:50259
+	Remote:	a104-88-54-134.deploy.static.akamaitechnologies.com:https
+[TCP] chrome.exe
+	PID:	23988
+	State:	ESTABLISHED
+	Local:	winserver:50263
+	Remote:	104.16.24.34:https
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50283
+	Remote:	localhost:27017
+[TCP] mongobooster.exe
+	PID:	13944
+	State:	ESTABLISHED
+	Local:	WINSERVER:50284
+	Remote:	localhost:27017
+[TCP] chrome.exe
+	PID:	23988
+	State:	CLOSE_WAIT
+	Local:	winserver:50316
+	Remote:	server-52-84-94-122.yul62.r.cloudfront.net:https
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:50343
+	Remote:	localhost:50344
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:50359
+	Remote:	localhost:9876
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:50361
+	Remote:	localhost:9876
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:50382
+	Remote:	localhost:9876
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:50383
+	Remote:	localhost:9876
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:50384
+	Remote:	localhost:9876
+[TCP] firefox.exe
+	PID:	28112
+	State:	ESTABLISHED
+	Local:	WINSERVER:54458
+	Remote:	localhost:54459
+[TCP] firefox.exe
+	PID:	28112
+	State:	ESTABLISHED
+	Local:	WINSERVER:54459
+	Remote:	localhost:54458
+[TCP] pycharm.exe
+	PID:	23692
+	State:	ESTABLISHED
+	Local:	WINSERVER:55794
+	Remote:	localhost:55795
+[TCP] pycharm.exe
+	PID:	23692
+	State:	ESTABLISHED
+	Local:	WINSERVER:55795
+	Remote:	localhost:55794
+[TCP] XWin_MobaX.exe
+	PID:	16744
+	State:	ESTABLISHED
+	Local:	WINSERVER:56718
+	Remote:	localhost:6000
+[TCP] XWin_MobaX.exe
+	PID:	16744
+	State:	ESTABLISHED
+	Local:	WINSERVER:56719
+	Remote:	localhost:6000
+[TCP] XWin_MobaX.exe
+	PID:	16744
+	State:	ESTABLISHED
+	Local:	WINSERVER:56720
+	Remote:	localhost:6000
+[TCP] sqlservr.exe
+	PID:	5360
+	State:	ESTABLISHED
+	Local:	winserver:59344
+	Remote:	winserver:60940
+[TCP] sqlservr.exe
+	PID:	5360
+	State:	ESTABLISHED
+	Local:	winserver:59344
+	Remote:	winserver:60941
+[TCP] Act!.exe
+	PID:	36964
+	State:	ESTABLISHED
+	Local:	winserver:60940
+	Remote:	winserver:59344
+[TCP] Act!.exe
+	PID:	36964
+	State:	ESTABLISHED
+	Local:	winserver:60941
+	Remote:	winserver:59344
+[TCP] avgsvca.exe
+	PID:	3684
+	State:	ESTABLISHED
+	Local:	winserver:62031
+	Remote:	fe-self001.nos-avg.cz:https
+[TCP] MySQLWorkbench.exe
+	PID:	55112
+	State:	ESTABLISHED
+	Local:	WINSERVER:63380
+	Remote:	localhost:3306
+[TCP] MySQLWorkbench.exe
+	PID:	55112
+	State:	ESTABLISHED
+	Local:	WINSERVER:63381
+	Remote:	localhost:3306
+[TCP] Navicat 11.1.12 Portable.exe
+	PID:	141504
+	State:	ESTABLISHED
+	Local:	WINSERVER:64173
+	Remote:	localhost:3306
+[TCP] [System Process]
+	PID:	0
+	State:	TIME_WAIT
+	Local:	WINSERVER:65351
+	Remote:	localhost:3334

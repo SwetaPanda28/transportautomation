@@ -1,0 +1,35 @@
+sql to insert user into the datbase
+
+
+sql to insert imie with the
+
+
+query = """select ws.imienumber, ws.generatedDate,ws.latitude,ws.longitude from user as u
+	join company c
+	on c.username = u.username
+	join device d
+	on d.companyID = c.companyID
+	join warehouse ws
+	on ws.imienumber = d.imienumber
+    where u.username = 'vivek'"""
+
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+    row = cursor.fetchone()
+    print row
+
+
+select ws.imienumber, ws.generatedDate,ws.latitude,ws.longitude from user as u
+	join company c
+	on c.username = u.username
+	join device d
+	on d.companyID = c.companyID
+	join warehouse ws
+	on ws.imienumber = d.imienumber
+where u.username = "vivek"
+
+
+manage.py inspectdb > test.py
+
+
+
