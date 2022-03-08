@@ -1,0 +1,64 @@
+{% load static %}
+
+<html>
+	<head>
+		<link rel="stylesheet" href="{% static 'Tracking/css/bootstrap_limitless.min.css' %}">
+		<link rel="stylesheet" href="{% static 'Tracking/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'Tracking/css/colors.min.css' %}">
+		<link rel="stylesheet" href="{% static 'Tracking/css/components.min.css' %}">
+		<link rel="stylesheet" href="{% static 'Tracking/css/layout.min.css' %}">
+		<script src="{% static 'Tracking/js/app.js' %}"></script>
+		<script src="{% static 'Tracking/js/custom.js' %}"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		{% block head %}{% endblock head %}
+	<title> {% block title %}{% endblock title %}  </title>
+	</head>
+	<!-- Document body -->
+<body class="navbar-top">
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-dark navbar-expand-md fixed-top">
+
+		<!-- Navbar brand -->
+		<div class="navbar-brand">
+			<img src="{% static 'Tracking/logo_light.png' %}" alt="" srcset="">
+		</div>
+		<!-- /navbar brand -->
+
+
+		<!-- Mobile toggler -->
+		<div class="d-md-none">
+			one
+		</div>
+		<!-- /mobile toggler -->
+
+
+		<!-- Navbar content -->
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			  
+				<li class="nav-item">
+				  <a class="nav-link" href="#">Link</a>
+				</li>
+				
+			</UL>			
+		</div>
+		<!-- /navbar content -->
+
+	</div>
+	<!-- /main navbar -->
+
+
+		{% block body %}{% endblock body %}
+</body>
+<!--
+	--->
+	
+<script>
+    $(document).ready(function () {
+       a= $('input').addClass('form-control') ;
+       a= $('select').addClass('form-control') ;
+       a= $('textarea').addClass('form-control') ;
+    });
+
+</script>

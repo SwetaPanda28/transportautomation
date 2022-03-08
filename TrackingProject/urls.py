@@ -7,7 +7,8 @@ from TrackingProject.views import *
 from django.urls import include, re_path
 from django.contrib import admin
 from django.urls import path
-
+from .views import *
+from Tracking.views import *
 from django.views.decorators.csrf import csrf_exempt
 
 admin.autodiscover()
@@ -21,6 +22,21 @@ admin.autodiscover()
 
 urlpatterns = []
 urlpatterns = [
+    path('admin/',admin.site.urls),
     path('', base, name='base'),
-    path(r'getVehicleLocation',getBusinessVehiclesLocation, name='getBusinessVehiclesLocation')
-]
+    path(r'getVehicleLocation',getBusinessVehiclesLocation, name='getBusinessVehiclesLocation'),
+    path('Automobilecreation/<int:company>',Automobilecreation,name='Automobilecreation'),
+    path('Businesscreation',Businesscreation,name='Businesscreation'),
+    path('test',test,name='test'),
+    path('login',Login,name="login"),
+    path('Usercreation/<int:company>',Signin,name="Usercreation"),
+    path('test2',test2,name='test2'),
+    path('listbusiness',listbusiness,name='listbusiness'),
+    path('listuser',listuser,name='listuser'),
+    path('editbusiness/<int:company>',editbusiness,name='editbusiness'),
+    path('deletebusiness/<int:company>',deletebusiness,name='deletebusiness'),
+    path('index',index,name='index'),
+    path('logout',signout,name='logout'),
+    #path('SigninAdvance',SigninAdvance,name="SigninAdvance"),
+
+]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

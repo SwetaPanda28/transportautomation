@@ -1,6 +1,8 @@
 __author__ = 'vivek'
 
 
+from cgitb import html
+import re
 from django.http import HttpResponse
 from django.shortcuts import render
 import datetime
@@ -12,13 +14,15 @@ from django.utils import timezone
 from django.db import connection
 from django.db.models import Q
 import time
-from TrackingProject.models import *
-
+from Tracking.models import *
+# from TrackingProject.models import *
+from . import models
+from Tracking.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 
-def index(request):
-    return HttpResponse("Hello world")
+
 
 def getBusinessVehiclesLocation(request):
     # is this function redundadnt ?
@@ -173,9 +177,10 @@ def gpsData(request):
 
     return HttpResponse("Hi")
 
-
+@login_required(login_url='/login')
 def base(request):
     #Test Base HTML Page
+    print (request.user.is_staff)
     return render(request,'base-new.html')
 
 def current_datetime(request):
@@ -195,3 +200,15 @@ def index(request):
 
 def login(request):
     return render(request,'login_simple.html')
+
+
+def test(request):
+    return render(request,'hello.html')
+
+def test2(request):
+    return render(request,'hello2.html')
+
+
+def index(request):
+    
+    return render(request,'index.html')

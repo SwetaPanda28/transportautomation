@@ -74,23 +74,33 @@ class AuthUserUserPermissions(models.Model):
         managed = False
         db_table = 'auth_user_user_permissions'
         unique_together = (('user', 'permission'),)
+        
+        
+class User(models.Model):
+    id = models.IntegerField()
+    username = models.CharField(primary_key=True, max_length=255)
+    password = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'user'
 
 
 class Company(models.Model):
-    companyid = models.IntegerField(db_column='companyID', primary_key=True)  # Field name made lowercase.
-    companyname = models.CharField(db_column='companyName', max_length=255)  # Field name made lowercase.
-    companyaddress1 = models.CharField(db_column='companyAddress1', max_length=255)  # Field name made lowercase.
-    companyaddress2 = models.CharField(db_column='companyAddress2', max_length=255)  # Field name made lowercase.
-    companycity = models.CharField(db_column='companyCity', max_length=255)  # Field name made lowercase.
-    companypostalcode = models.CharField(db_column='companyPostalCode', max_length=255)  # Field name made lowercase.
-    companystate = models.CharField(db_column='companyState', max_length=255)  # Field name made lowercase.
-    companycountry = models.CharField(db_column='companyCountry', max_length=255)  # Field name made lowercase.
-    companyphonenumber = models.IntegerField(db_column='companyPhoneNumber')  # Field name made lowercase.
-    username = models.ForeignKey('User', models.DO_NOTHING, db_column='username')
-    numberofvehicles = models.IntegerField(db_column='numberOfVehicles')  # Field name made lowercase.
-    companybaselat = models.FloatField(db_column='companyBaseLat')  # Field name made lowercase.
-    companybaselong = models.FloatField(db_column='companyBaseLong')  # Field name made lowercase.
-
+    companyid = models.AutoField(primary_key=True)  
+    companyname = models.CharField(max_length=255)  
+    companyaddress1 = models.CharField(max_length=255)
+    companyaddress2 = models.CharField(max_length=255)
+    companycity = models.CharField(max_length=255)
+    companypostalcode = models.CharField(max_length=255)
+    companystate = models.CharField(max_length=255)  
+    companycountry = models.CharField(max_length=255)
+    companyphonenumber = models.IntegerField()  
+    user = models.ForeignKey("User",on_delete=models.CASCADE)
+    numberofvehicles = models.IntegerField()
+    companybaselat = models.FloatField()  
+    companybaselong = models.FloatField()  
+    
     class Meta:
         managed = False
         db_table = 'company'
@@ -152,24 +162,14 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class User(models.Model):
-    id = models.IntegerField()
-    username = models.CharField(primary_key=True, max_length=255)
-    password = models.CharField(max_length=255)
-
-    class Meta:
-        managed = False
-        db_table = 'user'
-
-
 class Vehicle(models.Model):
     vehiclename = models.CharField(db_column='vehicleName', max_length=255)  # Field name made lowercase.
     vehicledriver = models.CharField(db_column='vehicleDriver', max_length=255)  # Field name made lowercase.
     vehicletype = models.CharField(db_column='vehicleType', max_length=255)  # Field name made lowercase.
     vehiclemilage = models.IntegerField(db_column='vehicleMilage')  # Field name made lowercase.
-    companyid = models.ForeignKey(Company, models.DO_NOTHING, db_column='companyID')  # Field name made lowercase.
-    vehicleid = models.IntegerField(db_column='vehicleID', primary_key=True)  # Field name made lowercase.
-
+    companyid = models.ForeignKey(Company, models.DO_NOTHING, db_column='companyID',blank=True)  # Field name made lowercase.
+    vehicleid = models.IntegerField(db_column='vehicleID', primary_key=True,blank=True)  # Field name made lowercase.
+    registationid = models.IntegerField(db_column='registrationid')
     class Meta:
         managed = False
         db_table = 'vehicle'

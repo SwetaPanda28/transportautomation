@@ -1,0 +1,45 @@
+{% extends 'base-new.html' %}
+
+
+{% block head %}{% endblock head %}
+{% block title %}VEHICLE CREATION{% endblock title %}
+{% block body %}
+<div class="d-flex" style="min-height: 100%; justify-content: center;">
+
+    <div class="align-self-center align-center;">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div id='error'>
+                <font color="red">{{error}}</font>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">name</span>
+                    {{ Vehicleform.name}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">driver</span>
+                {{ Vehicleform.driver}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">type</span>
+                {{ Vehicleform.type}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">milage</span>
+                {{ Vehicleform.milage}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">regId</span>
+                {{ Vehicleform.regId}}
+            </div>
+
+            <center>
+                <input type="submit" class="btn btn-secondary" value="submit">
+            </center>
+            
+        </form>
+    </div>
+
+    {% endblock body %}
+
+

@@ -1,0 +1,75 @@
+{% extends 'base-new.html' %}
+
+
+{% block head %}{% endblock head %}
+{% block title %}COMPANY CREATION{% endblock title %}
+{% block location %}
+
+    <span class="breadcrumb-item active">Add Business</span>
+
+
+{% endblock location %}
+{% block body %}
+<div class="d-flex" style="min-height: 100%; justify-content: center;">
+
+    <div class="align-self-center align-center;">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div id='error'>
+                <font color="red">{{error}}</font>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">name </span>
+                {{ Companyform.name}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">address1 </span>
+                {{ Companyform.address1}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">address2 </span>
+                {{ Companyform.address2}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">city</span>
+                {{  Companyform.city}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">postalcode</span>
+                {{  Companyform.postalcode}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">state</span>
+                {{ Companyform.state}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">country</span>
+                {{ Companyform.country}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">phonenumber</span>
+                {{ Companyform.phonenumber}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">numberofvehicle</span>
+                {{ Companyform.numberofvehicles}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">companybaselat</span>
+                {{ Companyform.baselat}}
+            </div>
+           
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">baselong</span>
+                {{ Companyform.baselong}}
+            </div>
+                
+            <center>
+            <input type="submit" class="btn btn-secondary"value="submit">
+        </center>
+        </form>
+    </div> 
+    
+</div>
+
+{% endblock body %}

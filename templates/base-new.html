@@ -36,7 +36,11 @@
 	<!-- /theme JS files -->
 
     <!-- /theme JS files -->
-    {% block head %}{% endblock %}
+	<!-- toastr JS files -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
+	<!-- toastr JS files -->
+    {% block head %}{% endblock head %}
 
 </head>
 
@@ -98,7 +102,7 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> Profile</a>
                         <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Settings</a>
-						<a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+						<a href="{% url 'logout' %}" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
 					</div>
 				</li>
 			</ul>
@@ -159,46 +163,43 @@
 						<!-- Main -->
 						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
 						<li class="nav-item">
-							<a href="index.html" class="nav-link active">
+							<a href="{% url 'base' %}" class="nav-link active">
 								<i class="icon-home4"></i>
 								<span>
 									Dashboard
 								</span>
 							</a>
 						</li>
-						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>1</span></a>
+						<li class="nav-item nav-item-submenu" {% if not user.is_staff %} hidden {% endif %} >
+							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Business Options</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Dashboard">
-								<li class="nav-item"><a href="index.html" class="nav-link active">a</a></li>
-								<li class="nav-item"><a href="../../../../layout_2/LTR/default/full/index.html" class="nav-link">b</a></li>
-								<li class="nav-item"><a href="../../../../layout_3/LTR/default/full/index.html" class="nav-link">c</a></li>
-								<li class="nav-item"><a href="../../../../layout_4/LTR/default/full/index.html" class="nav-link">d</a></li>
-
+								<li class="nav-item"><a href="{% url 'Businesscreation' %}" class="nav-link active">Add Business</a></li>
+								<li class="nav-item"><a href="{% url 'listbusiness' %}" class="nav-link">View Businesses</a></li>
 							</ul>
 						</li>
-						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-color-sampler"></i> <span>2</span></a>
+						<li class="nav-item nav-item-submenu" {% if not user.is_staff %} hidden {% endif %} >
+							<a href="#" class="nav-link"><i class="icon-color-sampler"></i> <span>User Options</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Themes">
-								<li class="nav-item"><a href="index.html" class="nav-link active">a</a></li>
-								<li class="nav-item"><a href="../../../LTR/material/full/index.html" class="nav-link">b</a></li>
-								<li class="nav-item"><a href="../../../LTR/dark/full/index.html" class="nav-link">c</a></li>
-								<li class="nav-item"><a href="../../../LTR/clean/full/index.html" class="nav-link">d</a></li>
+							</ul>
+							<ul class="nav nav-group-sub" data-submenu-title="Themes">
+								<li class="nav-item"><a href="index.html" hidden class="nav-link active">Add Users</a></li>
+								<li class="nav-item"><a href="{% url 'listuser'%}" class="nav-link active">view User</a></li>
 							</ul>
 						</li>
-						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-stack"></i> <span>3</span></a>
+						<li class="nav-item nav-item-submenu" {% if user.is_staff %} hidden {% endif %} >
+							<a href="#" class="nav-link"><i class="icon-stack"></i> <span>Vehicle Options</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
-								<li class="nav-item"><a href="../seed/layout_nav_horizontal.html" class="nav-link">a</a></li>
-								<li class="nav-item"><a href="../seed/sidebar_none.html" class="nav-link">b</a></li>
+								<li class="nav-item"><a href="  " class="nav-link">Add Vehicle</a></li>
+								<li class="nav-item"><a href="../seed/sidebar_none.html" class="nav-link">View Vehiles</a></li>
 								<li class="nav-item"><a href="../seed/sidebar_main.html" class="nav-link">c</a></li>
 								<li class="nav-item"><a href="../seed/layout_boxed.html" class="nav-link">d</a></li>
 
 							</ul>
 						</li>
-                        <li class="nav-item nav-item-submenu">
+                        <li class="nav-item nav-item-submenu" {% if user.is_staff %} hidden {% endif %}>
 							<a href="#" class="nav-link"><i class="icon-stack"></i> <span>4</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
@@ -210,7 +211,7 @@
 							</ul>
 						</li>
 
-                        <li class="nav-item nav-item-submenu">
+                        <li class="nav-item nav-item-submenu" {% if user.is_staff %} hidden {% endif %}>
 							<a href="#" class="nav-link"><i class="icon-stack"></i> <span>5</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
@@ -978,8 +979,12 @@
 				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
 					<div class="d-flex">
 						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<span class="breadcrumb-item active">Dashboard</span>
+							<a href="{% url 'base'%}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+							{% block location %}
+							<!--				USE THIS FOR NEW BREADCRUMBS   
+								<span class="breadcrumb-item active">Dashboard</span>
+							-->
+							{% endblock location %}
 						</div>
 
 						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -996,8 +1001,8 @@
 			<div class="content">
 
             <!-- Extended Code Here -->
-                    {% block content %}
-                    {% endblock %}
+                    {% block body %}
+                    {% endblock body %}
 
 			</div>
 			<!-- /content area -->
@@ -1034,3 +1039,18 @@
 
 </body>
 </html>
+
+
+<script>
+	toastr[`{{ status  }}`](`{{message}}`);
+</script>
+<script>	
+
+    $(document).ready(function () {
+       $('input').addClass('form-control') ;
+       $('select').addClass('form-control') ;
+       $('textarea').addClass('form-control') ;
+    });
+
+
+</script>
