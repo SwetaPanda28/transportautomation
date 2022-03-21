@@ -16,6 +16,13 @@ class VehicleForm(forms.ModelForm):
         exclude=[]
 
 
+class DeviceForm(forms.ModelForm):
+    
+    class Meta:
+        model = models.Device
+        exclude=[]
+
+
 
 class SigninUserForm(forms.ModelForm):
 

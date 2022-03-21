@@ -4,27 +4,41 @@ from . helper import *
 from django.http import HttpResponse,HttpRequest
 from django.contrib.auth import authenticate,login,logout
 # Create your views here.
-
-
-
+from django.views.decorators.csrf import csrf_exempt
+import json
+import datetime
 
 def Automobilecreation(request,company):
     print(request)
     Vehicleform=forms.VehicleForm()
-    
-    company = get_object_or_404(models.Company,pk=company)
+    dictV={'vehicleform':Vehicleform}
     if(request.method=="POST"):
         data = request.POST.copy()
-        data['company'] = company.pk    
+        data['company'] = company   
         vehicleobj= forms.VehicleForm(data) 
         if(vehicleobj.is_valid()):
             vehicleobj.save()
-            resp=redirect('test')
-            return resp
+            dictV['message'] = 'Vehicle Created Successfully'
+            dictV['status'] = 'success'
+            
         else:
-            print(vehicleobj.errors)
-    return render(request,'Tracking/Automobilecreation.html',{'Vehicleform':Vehicleform})
+            dictV['status'] = 'success'
+            dictV['message'] = vehicleobj.errors
+    return render(request,'Tracking/Automobilecreation.html',dictV)
 
+    
+def listvehicle(request):
+    vehicle = request.user.company.vehicle_set.all()
+    dictA= {'vehicles': vehicle}
+    print(dictA)
+    return render(request,'Tracking/listvehicle.html',dictA)
+
+
+def  listdevice(request,vehicle):
+    device=models.Vehicle.objects.get(pk=vehicle).device_set.all()
+    dictV ={}
+    dictV['devices'] = device
+    return render(request,'Tracking/listdevice.html',dictV)
 
 def Businesscreation(request): 
 
@@ -45,6 +59,26 @@ def Businesscreation(request):
             dictV['message']=Companyobj.errors
 
     return render(request,'Tracking/Businesscreation.html',dictV)
+
+
+def Devicecreation(request,vehicle):
+
+    DeviceForm=forms.DeviceForm()
+    dictV={'Deviceform':DeviceForm}
+    if(request.method=="POST"):
+        data=request.POST.copy()
+        data['vehicle']=vehicle
+        Deviceobj=forms.DeviceForm(data)
+        if(Deviceobj.is_valid()):
+            print("ok")
+            Deviceobj.save()
+            dictV['status']='success'
+            dictV['message']='Device Created Successfully'
+        else:
+            print(Deviceobj.errors)
+            dictV['status']='error'
+            dictV['message']=Deviceobj.errors
+    return render(request,'Tracking/Devicecreation.html',dictV)
 
 
 def Login(request):
@@ -75,9 +109,9 @@ def Signin(request,company):
             try:
                 user = models.User.objects.create_user(username = username,password=password)
                 company = models.Company.objects.get(pk=company)
-                company.user.add(user)
+                user.company = company
                 user.save()
-                company.save()
+
                 dictV['status'] = 'success'
                 dictV['message'] = 'User Created successfully'
             except Exception as e:     
@@ -86,6 +120,7 @@ def Signin(request,company):
         else:
             dictV['status'] = 'error'
             dictV['message'] = 'Please enter both username and password'
+        print(dictV)
     return render(request,'signin.html',dictV)
 
 
@@ -123,3 +158,92 @@ def deletebusiness(request,company):
 def signout(request):
     logout(request)
     return redirect('base')
+
+
+
+
+
+@csrf_exempt
+def thermalImagingData(request,imei):
+    data = json.dumps(request.POST)
+    print(data)
+    try:
+        devObj = models.Device.objects.get(pk=imei)
+        models.Sensingdata.objects.create(device= devObj,insertdate =datetime.datetime.now(),generateddate =datetime.datetime.now(),data=data)
+    except models.Device.DoesNotExist as e:
+        return HttpResponse('',status=404)
+    except Exception as e:
+        return HttpResponse(f'{e}',status=500)
+    return HttpResponse('',status=200)
+
+
+
+# def thermalImagingData(request,imei):
+#     #Test Base HTML Page
+#     # Validate Login Here
+#     #If Login is successful Go to Post
+#     dataBuilder = {}
+#     if request.method == "POST":
+#         print("A POST Request from a Device")
+#         print("Will Add the data to Database")
+#         # Do some logic and see if UUID is there in theDB. If yes, then only insert into the DB
+#         print("Will send the Json Data")
+#         #json_data = '[{"name": "Brian", "sensor": "12"}]'
+#         #dataBuilder['CreateTime'] = request.POST.get('CreateTime')
+#         body_unicode = request.body.decode('utf-8')
+#         body = json.loads(body_unicode)
+#         print(body)
+#         dataBuilder['UUID'] = body['UUID']
+#         dataBuilder['pixel1'] = body['pixel1']
+#         dataBuilder['pixel2'] = body['pixel2']
+#         dataBuilder['pixel3'] = body['pixel3']
+#         dataBuilder['pixel4'] = body['pixel4']
+#         dataBuilder['pixel5'] = body['pixel5']
+#         dataBuilder['pixel6'] = body['pixel6']
+#         dataBuilder['pixel7'] = body['pixel7']
+#         dataBuilder['pixel8'] = body['pixel8']
+#         dataBuilder['InsertTime'] = datetime.datetime.now()
+
+#         #d = datetime.datetime.strptim e(datetime.datetime.now(), "%Y-%m-%dT%H:%M:%S.000Z")
+
+#         #print dataBuilder
+#         #print request.body
+
+
+#         #theResponse = dbOperations.insertDoc(dataBuilder)
+
+#         #print(theResponse)
+
+#        # result = '{"responseData": {"data":[]}}';
+#        #return JsonResponse(json.dumps(result),safe = False )
+#        #return HttpResponse(json.dumps(json_data) , content_type='application/json')
+
+
+#     ################## just return Some data. In the future, we can handle this in a better way with authentication ##########################
+#     now = datetime.datetime.now()
+#     html = "<html><body>It is now %s.</body></html>" % now
+#     return HttpResponse(html)
+
+
+def sensorLinedChartData(request):
+    print("Sending the Sensor Line Chart Data")
+    data = [
+        ['Year', 'a', 'b', 'c', 'd'],
+        ['2004',  1000,      400, 1 , 2],
+        ['2005',  1170,      460, 2, 3],
+        ['2006',  660,       1120, 3, 4],
+        ['2007',  1030,      540, 5, 5]
+        ]
+    return HttpResponse(json.dumps(data), content_type='application/json')
+    # Go to the Database and get the Sensor Values for Sensor
+
+def getSensorData(request,id):
+    vehicle = models.Vehicle.objects.get(pk=id)
+    data = []
+    lowerDate = datetime.datetime.strptime('14/03/2022',r'%d/%m/%Y')
+    upperDate = datetime.datetime.strptime('19/03/2022',r'%d/%m/%Y')
+    for device in vehicle.device_set.all():
+        for sensing  in device.sensingdata_set.filter(insertdate__gte=lowerDate,insertdate__lte=upperDate):
+            data.append(  json.loads(sensing.data)   )
+    print(data)
+    return HttpResponse(data,content_type="application/json")

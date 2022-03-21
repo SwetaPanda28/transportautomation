@@ -12,6 +12,15 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		{% block head %}{% endblock head %}
 	<title> {% block title %}{% endblock title %}  </title>
+	
+<script>
+    $(document).ready(function () {
+       a= $('input').addClass('form-control') ;
+       a= $('select').addClass('form-control') ;
+       a= $('textarea').addClass('form-control') ;
+    });
+
+</script>
 	</head>
 	<!-- Document body -->
 <body class="navbar-top">
@@ -51,14 +60,3 @@
 
 		{% block body %}{% endblock body %}
 </body>
-<!--
-	--->
-	
-<script>
-    $(document).ready(function () {
-       a= $('input').addClass('form-control') ;
-       a= $('select').addClass('form-control') ;
-       a= $('textarea').addClass('form-control') ;
-    });
-
-</script>

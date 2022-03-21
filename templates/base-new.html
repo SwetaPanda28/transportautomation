@@ -9,30 +9,30 @@
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="{{STATIC_URL}}css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="{{STATIC_URL}}css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="{{STATIC_URL}}css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="{{STATIC_URL}}css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="{{STATIC_URL}}css/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/icons/icomoon/styles.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/bootstrap_limitless.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/layout.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/components.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/colors.min.css' %}" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script src="{{STATIC_URL}}js/main/jquery.min.js"></script>
-	<script src="{{STATIC_URL}}js/main/bootstrap.bundle.min.js"></script>
-	<script src="{{STATIC_URL}}js/plugins/loaders/blockui.min.js"></script>
+	<script src="{% static 'js/main/jquery.min.js' %}"></script>
+	<script src="{% static 'js/main/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'js/plugins/loaders/blockui.min.js' %}"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="{{STATIC_URL}}js/plugins/visualization/d3/d3.min.js"></script>
-	<script src="{{STATIC_URL}}js/plugins/visualization/d3/d3_tooltip.js"></script>
-	<script src="{{STATIC_URL}}js/plugins/forms/styling/switchery.min.js"></script>
-	<script src="{{STATIC_URL}}js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-	<script src="{{STATIC_URL}}js/plugins/ui/moment/moment.min.js"></script>
-	<script src="{{STATIC_URL}}js/plugins/pickers/daterangepicker.js"></script>
+	<script src="{% static 'js/plugins/visualization/d3/d3.min.js' %}"></script>
+	<script src="{% static 'js/plugins/visualization/d3/d3_tooltip.js' %}"></script>
+	<script src="{% static 'js/plugins/forms/styling/switchery.min.js' %}"></script>
+	<script src="{% static 'js/plugins/forms/selects/bootstrap_multiselect.js' %}"></script>
+	<script src="{% static 'js/plugins/ui/moment/moment.min.js' %}"></script>
+	<script src="{% static 'js/plugins/pickers/daterangepicker.js' %}"></script>
 
-	<script src="{{STATIC_URL}}js/app.js"></script>
-	<script src="{{STATIC_URL}}js/demo_pages/dashboard.js"></script>
+	<script src="{% static 'js/app.js' %}"></script>
+	<script src="{% static 'js/demo_pages/dashboard.js' %}"></script>
 	<!-- /theme JS files -->
 
     <!-- /theme JS files -->
@@ -40,6 +40,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
 	<!-- toastr JS files -->
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     {% block head %}{% endblock head %}
 
 </head>
@@ -50,7 +52,7 @@
 	<div class="navbar navbar-expand-md navbar-dark">
 		<div class="navbar-brand">
 			<a href="index.html" class="d-inline-block">
-				<img src="{{STATIC_URL}}images/logo_light_delete.png" alt="">
+				<img src="{% static 'images/logo_light_delete.png' %}" alt="">
 			</a>
 		</div>
 
@@ -139,7 +141,7 @@
 					<div class="card-body">
 						<div class="media">
 							<div class="mr-3">
-								<a href="#"><img src="{{STATIC_URL}}images/placeholders/placeholder.jpg" width="38" height="38" class="rounded-circle" alt=""></a>
+								<a href="#"><img src="{% static 'images/placeholders/placeholder.jpg' %}" width="38" height="38" class="rounded-circle" alt=""></a>
 							</div>
 
 							<div class="media-body">
@@ -170,7 +172,8 @@
 								</span>
 							</a>
 						</li>
-						<li class="nav-item nav-item-submenu" {% if not user.is_staff %} hidden {% endif %} >
+						{% if user.is_staff %}
+						<li class="nav-item nav-item-submenu"  >
 							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Business Options</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Dashboard">
@@ -178,7 +181,7 @@
 								<li class="nav-item"><a href="{% url 'listbusiness' %}" class="nav-link">View Businesses</a></li>
 							</ul>
 						</li>
-						<li class="nav-item nav-item-submenu" {% if not user.is_staff %} hidden {% endif %} >
+						<li class="nav-item nav-item-submenu" >
 							<a href="#" class="nav-link"><i class="icon-color-sampler"></i> <span>User Options</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Themes">
@@ -188,18 +191,21 @@
 								<li class="nav-item"><a href="{% url 'listuser'%}" class="nav-link active">view User</a></li>
 							</ul>
 						</li>
-						<li class="nav-item nav-item-submenu" {% if user.is_staff %} hidden {% endif %} >
+
+						{% else %}
+
+						<li class="nav-item nav-item-submenu" >
 							<a href="#" class="nav-link"><i class="icon-stack"></i> <span>Vehicle Options</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
-								<li class="nav-item"><a href="  " class="nav-link">Add Vehicle</a></li>
-								<li class="nav-item"><a href="../seed/sidebar_none.html" class="nav-link">View Vehiles</a></li>
-								<li class="nav-item"><a href="../seed/sidebar_main.html" class="nav-link">c</a></li>
+								<li class="nav-item"><a href="{% url 'Automobilecreation' request.user.company.pk %}" class="nav-link">Add Vehicle</a></li>
+								<li class="nav-item"><a href="{% url 'listvehicle'%}" class="nav-link">View Vehicles</a></li>
+								<li class="nav-item"><a href="#" class="nav-link">c</a></li>
 								<li class="nav-item"><a href="../seed/layout_boxed.html" class="nav-link">d</a></li>
 
 							</ul>
 						</li>
-                        <li class="nav-item nav-item-submenu" {% if user.is_staff %} hidden {% endif %}>
+                        <li class="nav-item nav-item-submenu" >
 							<a href="#" class="nav-link"><i class="icon-stack"></i> <span>4</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
@@ -211,7 +217,7 @@
 							</ul>
 						</li>
 
-                        <li class="nav-item nav-item-submenu" {% if user.is_staff %} hidden {% endif %}>
+                        <li class="nav-item nav-item-submenu" >
 							<a href="#" class="nav-link"><i class="icon-stack"></i> <span>5</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
@@ -222,7 +228,7 @@
 
 							</ul>
 						</li>
-
+						{% endif %}
 {#						<li class="nav-item">#}
 {#							<a href="changelog.html" class="nav-link">#}
 {#								<i class="icon-list-unordered"></i>#}
@@ -1042,7 +1048,7 @@
 
 
 <script>
-	toastr[`{{ status  }}`](`{{message}}`);
+	toastr[`{{ status  }}`]("{{message}}");
 </script>
 <script>	
 

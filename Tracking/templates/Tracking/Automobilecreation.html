@@ -13,33 +13,29 @@
                 <font color="red">{{error}}</font>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">name</span>
-                    {{ Vehicleform.name}}
+                <span class="input-group-text" id="basic-addon1">name </span>
+                {{ vehicleform.name}}
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">driver</span>
-                {{ Vehicleform.driver}}
+                <span class="input-group-text" id="basic-addon1">mileage </span>
+                {{ vehicleform.mileage}}
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">registration Id</span>
+                {{ vehicleform.regId}}
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">type</span>
-                {{ Vehicleform.type}}
+                {{ vehicleform.type}}
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">milage</span>
-                {{ Vehicleform.milage}}
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">regId</span>
-                {{ Vehicleform.regId}}
-            </div>
-
-            <center>
-                <input type="submit" class="btn btn-secondary" value="submit">
-            </center>
             
+                
+            <center>
+            <input type="submit" class="btn btn-secondary"value="submit">
+        </center>
         </form>
-    </div>
+    </div> 
+    
+</div>
 
-    {% endblock body %}
-
-
+{% endblock body%}

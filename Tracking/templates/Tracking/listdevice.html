@@ -1,0 +1,100 @@
+
+{% extends 'base-new.html' %}
+
+{% block head %}{% endblock head %}
+{% block title %}DEVICE CREATION{% endblock title %}
+{% block location %}
+<span class="breadcrumb-item active">View Device</span>
+{% endblock location %}
+{% block body %}
+
+<table class="table">
+    <tr>
+        <th>
+            datalogger
+        </th>
+        <th>
+            co2sensor
+        </th>
+        <th>
+            fuelsensor
+        </th>
+        <th>
+            gps
+        </th>
+        axisaccelerometer
+        
+        </th><th>
+            weightsensor
+        </th>
+        <th>
+            temperaturessensor
+        </th>
+        <th>
+            obdscanner
+        </th>
+        <th>
+            humiditysensor
+        </th>
+        <th>
+            serialno
+        </th>
+        <th>
+            type
+        </th>
+        <th>
+            msisdn
+        </th>
+        
+        
+    </tr>
+    {%for device in devices %}
+    <tr>
+        <td>
+            {{device.datalogger}}
+        </td>
+        <td>
+            {{device.co2sensor}}
+        </td>
+        <td>
+            {{device.fuelsensor}}
+        </td>
+        <td>
+            {{device.gps}}
+        </td>
+        <td>
+            {{device.axisaccelerometer}}
+        </td>
+        <td>
+            {{device.weightsensor}}
+        </td>
+        <td>
+            {{device.temperaturessensor}}
+        </td>
+        <td>
+            {{device.obdscanner}}
+        </td>
+        <td>
+            {{device.humiditysensor}}
+        </td>
+        <td>
+            {{device.serialno}}
+        </td>
+        <td>
+            {{device.msisdn}}
+        </td>
+        <td>
+            {{device.type}}
+        </td>
+
+        
+    <td>
+        <a href =  "#"> <span class="badge bg-blue">Edit</span></a>
+        <a href =  "#"><span class="badge bg-danger">delete</span></a>              
+       
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock body %}
