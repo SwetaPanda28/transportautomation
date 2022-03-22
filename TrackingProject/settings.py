@@ -81,7 +81,7 @@ if(DEBUG):
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'navigationproject2',
+        'NAME': 'navigationproject3',
         'USER': 'sweta',
         'PASSWORD': 'P@ssw0rd',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
@@ -166,4 +166,4 @@ TEMPLATE_DIRS = (
 )
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-AUTH_USER_MODEL = 'Tracking.User'
+AUTH_USER_MODEL = 'TrackingProject.User'

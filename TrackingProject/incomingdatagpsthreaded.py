@@ -20,7 +20,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "TrackingProject.settings")
 
 django.setup()
 
-from TrackingProject.models import *
+from TrackingProject.xyz import *
 
 
 f= open("gpsdatathreaded.txt","w+")
