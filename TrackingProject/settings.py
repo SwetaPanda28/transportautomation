@@ -25,7 +25,7 @@ SECRET_KEY = 'r@viv278_hmqt8#0m@q070pwj&=25qh9fh&mn0jr31*hnjar63'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.86']
+ALLOWED_HOSTS = ['192.168.1.86','*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'TrackingProject',
+    
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'TrackingProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/'),os.path.join(BASE_DIR,'Tracking/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,36 +77,50 @@ WSGI_APPLICATION = 'TrackingProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
+if(DEBUG):
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'navigationproject',
-        'USER': 'root',
-        'PASSWORD': 'password',
+        'NAME': 'navigationproject3',
+        'USER': 'sweta',
+        'PASSWORD': 'P@ssw0rd',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
+        }
     }
-}
+else:    
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'navigationproject',
+            'USER': 'root',
+            'PASSWORD': 'password',
+            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+if DEBUG:
+    AUTH_PASSWORD_VALIDATORS = []
+else:
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
 
 
 # Internationalization
@@ -125,14 +140,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 #STATIC_ROOT = os.path.join(BASE_DIR,'static','static_root')
 
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'..','static'),
-                    )
+# STATICFILES_DIRS = (os.path.join(BASE_DIR,'..','static'),
+#                     )
 '''
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),
@@ -147,6 +162,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),
 MEDIA_ROOT = os.path.join(BASE_DIR,'static','media')
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
+    os.path.join(BASE_DIR,  'Template'),
 )
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+AUTH_USER_MODEL = 'TrackingProject.User'
