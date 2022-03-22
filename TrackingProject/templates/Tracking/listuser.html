@@ -1,0 +1,44 @@
+{% extends 'base-new.html' %}
+
+
+{% block head %}{% endblock head %}
+{% block title %}COMPANY CREATION{% endblock title %}
+{% block location %}
+<span class="breadcrumb-item active">View user</span>
+{% endblock location %}
+{% block body %}
+
+<table class="table">
+    <tr>
+        <th>
+            Username
+        </th>
+        <th>
+            password
+        </th>
+        <th>
+            Type
+        </th>
+    </tr>
+    {%for user in users%}
+    <tr>
+        <td>
+            {{user.username}}
+        </td>
+        <td>
+            {{user.password}}
+        </td>
+        <td>
+            {% if user.is_staff %}Admin{%else%}User{%endif%}
+        </td>
+        <td>  
+            <a href =  "{% url 'editbusiness' user.pk %}"> <span class="badge bg-blue">Edit</span></a>
+            <a href =  "{% url 'deletebusiness' user.pk %}"><span class="badge bg-danger">delete</span></a>              
+      
+            
+        </td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock body %}

@@ -1,214 +1,256 @@
-__author__ = 'vivek'
-
-
-from cgitb import html
-import re
-from django.http import HttpResponse
-from django.shortcuts import render
-import datetime
-import json
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
-import datetime
-from django.utils import timezone
-from django.db import connection
-from django.db.models import Q
-import time
-from Tracking.models import *
-# from TrackingProject.models import *
-from . import models
-from Tracking.models import User
+from django.shortcuts import get_object_or_404, render,redirect
+from . import models,forms
+from . helper import *
+from django.http import HttpResponse,HttpRequest
+from django.contrib.auth import authenticate,login,logout
+# Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
+import json
+import datetime
 
-
-
-
-def getBusinessVehiclesLocation(request):
-    # is this function redundadnt ?
-    recordList = []
-    print("Will send the Json Data")
-    json_data = '[{"name": "Brian", "sensor": "12"}]'
-    #print "Saving Data"
-    getCompanyID = Company.objects.filter(username = "vivek")[0]
-    #print getCompanyID.companyid
-    getImieNumber = Device.objects.filter(companyid=getCompanyID.companyid).select_related()[0]
-    #print getImieNumber.imienumber
-
-    #getTransactions = Warehouse.objects.filter(imienumber=getImieNumber.imienumber).select_related()
-    getTransactions = Warehouse.objects.filter(imienumber=getImieNumber.imienumber)
-    #newsletters =   Warehouse.order_by(imienumber=getImieNumber.imienumber).objects.prefetch_related('imienumber').all().order_by('insertdate')
-
-    for i in getTransactions.iterator():
-        recordList.append([i.generateddate,i.latitude,i.longitude])
-        #print i.generateddate,i.latitude,i.longitude
-    #print recordList
-
-    '''
-    p = Warehouse(id = 1,  insertdate=datetime.datetime.now(), generateddate=datetime.datetime.now(), latitude=123.45,longitude=124.5,imienumber= Device.objects.get(imienumber = 352887078364431))
-    p.save()
-    '''
-    return HttpResponse(json_data)
-
-
-def getGPSList(request):
-    # This code returns the list of gps devices for the company
-    recordList = []
-    getCompanyID = Company.objects.filter(username="vivek")[0]
-    #print getCompanyID.companyid
-    records = Device.objects.filter(companyid=getCompanyID.companyid).select_related()
-    for i in records:
-        print(i.imienumber)
-    #print getImieNumber.imienumber
-        gps_data_list = {"imienumber" : str(i.imienumber), "vehiclename" : "Truck"}
-        recordList.append(gps_data_list)
-
-    return HttpResponse(str(recordList))
-
-
-def getCurrentGPSPosition(request):
-    # This method will return the
-    recordList = []
-    #print "Will send the Json Data"
-    json_data = '[{"imie": "1234567890", "latitude": "12","longitude" : "123"}]'
-    #print "Saving Data"
-    getCompanyID = Company.objects.filter(username="vivek")[0]
-    #print getCompanyID.companyid
-    records = Device.objects.filter(companyid=getCompanyID.companyid).select_related()
-
-    for i in records:
-        print(i.imienumber)
-
-        #Both will give same values
-
-        #getTransactions = Warehouse.objects.filter(imienumber=i.imienumber).select_related()
-        #print getTransactions
-
-        if not Warehouse.objects.filter(imienumber=i.imienumber):
-            print("No Data for %s" %(i.imienumber))
+def Automobilecreation(request,company):
+    print(request)
+    Vehicleform=forms.VehicleForm()
+    dictV={'vehicleform':Vehicleform}
+    if(request.method=="POST"):
+        data = request.POST.copy()
+        data['company'] = company   
+        vehicleobj= forms.VehicleForm(data) 
+        if(vehicleobj.is_valid()):
+            vehicleobj.save()
+            dictV['message'] = 'Vehicle Created Successfully'
+            dictV['status'] = 'success'
+            
         else:
-            getLastTransactions = Warehouse.objects.filter(imienumber=i.imienumber).latest('generateddate')
-            #print getLastTransactions
-            json_data = [{'i': str(getLastTransactions.imienumber_id), 'j': str(getLastTransactions.latitude),'k' : str(getLastTransactions.longitude)}]
-            recordList.append(str(json_data))
+            dictV['status'] = 'success'
+            dictV['message'] = vehicleobj.errors
+    return render(request,'Tracking/Automobilecreation.html',dictV)
+
+    
+def listvehicle(request):
+    vehicle = request.user.company.vehicle_set.all()
+    dictA= {'vehicles': vehicle}
+    print(dictA)
+    return render(request,'Tracking/listvehicle.html',dictA)
+
+
+def  listdevice(request,vehicle):
+    device=models.Vehicle.objects.get(pk=vehicle).device_set.all()
+    dictV ={}
+    dictV['devices'] = device
+    return render(request,'Tracking/listdevice.html',dictV)
+
+def Businesscreation(request): 
+
+    CompanyForm=forms.CompanyForm()
+    dictV = {'Companyform':CompanyForm}
+    if(request.method=="POST"):
+        data = request.POST.copy()
+        data['user'] = request.user.pk
+        Companyobj=forms.CompanyForm(data)
+        if(Companyobj.is_valid()):
+            print("ok")
+            Companyobj.save()
+            dictV['status']='success'
+            dictV['message']='Company Created Successfully'
+        else:
+            print(Companyobj.errors)
+            dictV['status']='error'
+            dictV['message']=Companyobj.errors
+
+    return render(request,'Tracking/Businesscreation.html',dictV)
+
+
+def Devicecreation(request,vehicle):
+
+    DeviceForm=forms.DeviceForm()
+    dictV={'Deviceform':DeviceForm}
+    if(request.method=="POST"):
+        data=request.POST.copy()
+        data['vehicle']=vehicle
+        Deviceobj=forms.DeviceForm(data)
+        if(Deviceobj.is_valid()):
+            print("ok")
+            Deviceobj.save()
+            dictV['status']='success'
+            dictV['message']='Device Created Successfully'
+        else:
+            print(Deviceobj.errors)
+            dictV['status']='error'
+            dictV['message']=Deviceobj.errors
+    return render(request,'Tracking/Devicecreation.html',dictV)
+
+
+def Login(request):
+    dictV ={}
+    if(request.method=='POST'):
+        print(request.POST)
+        username=request.POST.get('username',False)
+        password=request.POST.get('pass',False)
+        print(username,password)
+        if all((username,password)):        
+            user=authenticate(username=username,password=password)
+            if user:
+                login(request,user)
+                return redirect('base')
+
+        dictV['error'] = 'invalid user credentials'
+    
+    return render(request,'login.html',dictV)    
+    
+
+
+def Signin(request,company):
+    dictV = {}
+    if(request.method=="POST"):
+        username = request.POST.get('username',None)
+        password = request.POST.get('password',None)
+        if(username and password):
+            try:
+                user = models.User.objects.create_user(username = username,password=password)
+                company = models.Company.objects.get(pk=company)
+                user.company = company
+                user.save()
+
+                dictV['status'] = 'success'
+                dictV['message'] = 'User Created successfully'
+            except Exception as e:     
+                dictV['status'] = 'error'
+                dictV['message'] = f'User couldn`t be created {e}'
+        else:
+            dictV['status'] = 'error'
+            dictV['message'] = 'Please enter both username and password'
+        print(dictV)
+    return render(request,'signin.html',dictV)
+
+
+def listuser(request):
+    users=models.User.objects.all()
+    dictU={'users':users}
+    return render(request,'Tracking/listuser.html',dictU)
+
+    
+def listbusiness(request):
+    businesses = models.Company.objects.all()
+    dictV = {'businesses': businesses}
+    return render(request,'Tracking/listbusiness.html',dictV)
+
+def editbusiness(request,company):
+    company = models.Company.objects.get(pk=company)
+    companyForm = forms.CompanyForm(request.POST or None,instance=company)
+    if companyForm.is_valid():
+        companyForm.save()
+        return(redirect('listbusiness'))
+    else:
+        print(companyForm.errors)
+    return render(request,'Tracking/editBusiness.html',{'companyForm':companyForm})
+
+def deletebusiness(request,company):
+    if(request.method == 'GET'):
+        confirm = bool(request.GET.get('confirm',False))
+        if(confirm):
+            models.Company.objects.get(pk=company).delete()
+            return redirect('listbusiness')
+    param={'business':company}
+    return render(request,'Tracking/deleteBusiness.html',param)
+
+    
+def signout(request):
+    logout(request)
+    return redirect('base')
 
 
 
 
-        #print getImieNumber.imienumber
-
-    # For all the ImieNumber, get the
-
-    return HttpResponse(recordList)
-
-    #newsletters =   Warehouse.order_by(imienumber=getImieNumber.imienumber).objects.prefetch_related('imienumber').all().order_by('insertdate')
-
-def getVehicleHistory(request):
- recordList = []
- #print "Will send the Json Data"
- json_data = '[{"name": "Brian", "sensor": "12"}]'
- #print "Saving Data"
-
- # publication = User.objects.get(username="vivek")
- #userinfo = User.objects.filter(username="vivek").select_related()[0]
- #print userinfo
-
- #t = User.objects.all().select_related('companyID')
- #print "hi"
-
- getCompanyID = Company.objects.filter(username="vivek")[0]
-
- #print getCompanyID.companyid
-
- getImieNumber = Device.objects.filter(companyid=getCompanyID.companyid).select_related()[0]
-
- #print getImieNumber.imienumber
-
- getTransactions = Warehouse.objects.filter(imienumber=getImieNumber.imienumber).select_related()
- getTransactions = Warehouse.objects.filter(imienumber=getImieNumber.imienumber)
- #newsletters =   Warehouse.order_by(imienumber=getImieNumber.imienumber).objects.prefetch_related('imienumber').all().order_by('insertdate')
-
- for i in getTransactions.iterator():
-     #date_time_obj = datetime.datetime.strptime(i.generateddate, '%Y-%m-%d %H:%M:%S.%f')
-     json_data = {"i": str(i.generateddate), "j":i.latitude ,"k" : i.longitude }
-     recordList.append(json_data)
-     #print i.generateddate,i.latitude,i.longitude
- #print recordList
-
- return HttpResponse(str(recordList))
-
-
-def getCompanyHomeGeo(request):
-    recordList = []
-    # This will return the home latitude and longitude for the company
-    record = Company.objects.filter(username="vivek")[0]
-
-    #print record
-
-    json_data = [{"j": record.companybaselat, "k": record.companybaselong}]
-
-    return HttpResponse(str(json_data))
 
 @csrf_exempt
-def gpsData(request):
-    #Test Base HTML Page
+def thermalImagingData(request,imei):
+    data = json.dumps(request.POST)
+    print(data)
+    try:
+        devObj = models.Device.objects.get(pk=imei)
+        models.Sensingdata.objects.create(device= devObj,insertdate =datetime.datetime.now(),generateddate =datetime.datetime.now(),data=data)
+    except models.Device.DoesNotExist as e:
+        return HttpResponse('',status=404)
+    except Exception as e:
+        return HttpResponse(f'{e}',status=500)
+    return HttpResponse('',status=200)
 
-    # Validate Login Here
-
-    #If Login is successful Go to Post
 
 
-    if request.method == "POST":
-        print("A POST Request from a Device!")
+# def thermalImagingData(request,imei):
+#     #Test Base HTML Page
+#     # Validate Login Here
+#     #If Login is successful Go to Post
+#     dataBuilder = {}
+#     if request.method == "POST":
+#         print("A POST Request from a Device")
+#         print("Will Add the data to Database")
+#         # Do some logic and see if UUID is there in theDB. If yes, then only insert into the DB
+#         print("Will send the Json Data")
+#         #json_data = '[{"name": "Brian", "sensor": "12"}]'
+#         #dataBuilder['CreateTime'] = request.POST.get('CreateTime')
+#         body_unicode = request.body.decode('utf-8')
+#         body = json.loads(body_unicode)
+#         print(body)
+#         dataBuilder['UUID'] = body['UUID']
+#         dataBuilder['pixel1'] = body['pixel1']
+#         dataBuilder['pixel2'] = body['pixel2']
+#         dataBuilder['pixel3'] = body['pixel3']
+#         dataBuilder['pixel4'] = body['pixel4']
+#         dataBuilder['pixel5'] = body['pixel5']
+#         dataBuilder['pixel6'] = body['pixel6']
+#         dataBuilder['pixel7'] = body['pixel7']
+#         dataBuilder['pixel8'] = body['pixel8']
+#         dataBuilder['InsertTime'] = datetime.datetime.now()
 
-        body_unicode = request.body.decode('utf-8')
+#         #d = datetime.datetime.strptim e(datetime.datetime.now(), "%Y-%m-%dT%H:%M:%S.000Z")
 
-        #print "The data is"
-        #print body_unicode
-        body = json.loads(body_unicode)
+#         #print dataBuilder
+#         #print request.body
 
-        #print body
-        t = time.localtime()
-        timestamp = time.strftime('%b-%d-%Y_%H%M%S', t)
 
-        f = open("espdata.txt", "a")
-        f.write("%s\n" %body )
-        f.close()
+#         #theResponse = dbOperations.insertDoc(dataBuilder)
 
-    return HttpResponse("Hi")
+#         #print(theResponse)
 
-@login_required(login_url='/login')
+#        # result = '{"responseData": {"data":[]}}';
+#        #return JsonResponse(json.dumps(result),safe = False )
+#        #return HttpResponse(json.dumps(json_data) , content_type='application/json')
+
+
+#     ################## just return Some data. In the future, we can handle this in a better way with authentication ##########################
+#     now = datetime.datetime.now()
+#     html = "<html><body>It is now %s.</body></html>" % now
+#     return HttpResponse(html)
+
+
+def sensorLinedChartData(request):
+    print("Sending the Sensor Line Chart Data")
+    data = [
+        ['Year', 'a', 'b', 'c', 'd'],
+        ['2004',  1000,      400, 1 , 2],
+        ['2005',  1170,      460, 2, 3],
+        ['2006',  660,       1120, 3, 4],
+        ['2007',  1030,      540, 5, 5]
+        ]
+    return HttpResponse(json.dumps(data), content_type='application/json')
+    # Go to the Database and get the Sensor Values for Sensor
+
+def getSensorData(request,id):
+    vehicle = models.Vehicle.objects.get(pk=id)
+    data = []
+    lowerDate = datetime.datetime.strptime('14/03/2022',r'%d/%m/%Y')
+    upperDate = datetime.datetime.strptime('19/03/2022',r'%d/%m/%Y')
+    for device in vehicle.device_set.all():
+        for sensing  in device.sensingdata_set.filter(insertdate__gte=lowerDate,insertdate__lte=upperDate):
+            data.append(  json.loads(sensing.data)   )
+    print(data)
+    return HttpResponse(data,content_type="application/json")
+
+
+
 def base(request):
     #Test Base HTML Page
     print (request.user.is_staff)
     return render(request,'base-new.html')
-
-def current_datetime(request):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)
-
-def main_page(request):
-    output = "<html><body>It is now</body></html>"
-    return HttpResponse(output)
-
-def hello(request):
-    return HttpResponse("Hello world")
-
-def index(request):
-    return render(request,'base-index.html')
-
-def login(request):
-    return render(request,'login_simple.html')
-
-
-def test(request):
-    return render(request,'hello.html')
-
-def test2(request):
-    return render(request,'hello2.html')
-
-
-def index(request):
-    
-    return render(request,'index.html')

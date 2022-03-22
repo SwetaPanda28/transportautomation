@@ -8,7 +8,7 @@ from django.urls import include, re_path
 from django.contrib import admin
 from django.urls import path
 from .views import *
-from Tracking.views import *
+from  .views_old import *
 from django.views.decorators.csrf import csrf_exempt
 
 admin.autodiscover()
