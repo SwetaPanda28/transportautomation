@@ -3,7 +3,7 @@ __author__ = 'vivek'
 import requests
 import datetime
 import json
-url = 'http://localhost:8000/thermalImagingData/10'
+url = 'http://localhost:8000/thermalImagingData/1'
 payload = {'temp': 1,
  'co2': 2,
  'humidity': 3,

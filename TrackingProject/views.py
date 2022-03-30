@@ -241,7 +241,7 @@ def getSensorData(request,id):
     vehicle = models.Vehicle.objects.get(pk=id)
     data = []
     lowerDate = datetime.datetime.strptime('14/03/2022',r'%d/%m/%Y')
-    upperDate = datetime.datetime.strptime('19/03/2022',r'%d/%m/%Y')
+    upperDate = datetime.datetime.strptime('24/03/2022',r'%d/%m/%Y')
     for device in vehicle.device_set.all():
         for sensing  in device.sensingdata_set.filter(insertdate__gte=lowerDate,insertdate__lte=upperDate):
             data.append(  json.loads(sensing.data)   )
@@ -254,3 +254,7 @@ def base(request):
     #Test Base HTML Page
     print (request.user.is_staff)
     return render(request,'base-new.html')
+
+
+def Vehicledata(request):
+    return render(request,'vehicledata.html')

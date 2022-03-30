@@ -44,5 +44,6 @@ urlpatterns = [
     path('sensorLinedChartData',sensorLinedChartData,name='sensorLinedChartData'),
     path('getSensorData/<int:id>',getSensorData,name='getSensorData'),
     #path('SigninAdvance',SigninAdvance,name="SigninAdvance"),
+    path('Vehicledata',Vehicledata,name='Vehicledata'),
 
 ]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
